@@ -1,45 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Card from './Card';
+import CardSideBar from './CardSideBar';
 
 const Shop = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('../../../public/fakeData/products.json');
+      const data = await res.json();
+      setData(data);
+    };
+    fetchData();
+  }, []);
+  // console.log(data);
   return (
-    <div className='max-w-screen-xl mx-auto  px-5  w-11/12'>
-      <div className='grid grid-cols-12 gap-4'>
-        {/* cards */}
-        <div className='border col-span-8'>
-          <div className='card w-96 bg-base-100 shadow-xl border'>
-            <figure className='px-10 pt-10'>
-              <img
-                src='https://source.unsplash.com/user/c_v_r/1600x900'
-                alt=''
-                className='rounded-xl'
-              />
-            </figure>
-            <div className='card-body items-center text-center'>
-              <h2 className='card-title'>Ultraboost 22 Shoes</h2>
-              <p>Price: $190 </p>
-              <p>Manufacturer : Addidas </p>
-              <p>Rating : 3 start</p>
-              <div className='card-actions'>
-                <button className='btn btn-primary'>Buy Now</button>
-              </div>
-            </div>
+    <div className='max-w-screen-xl mx-auto  mt-12 w-11/12'>
+      <div className='grid grid-cols-12 gap-11 '>
+        <div className='  col-span-9'>
+          <div className='grid grid-cols-2 gap-5 '>
+            {data.map((product) => (
+              <Card
+                key={product.id}
+                product={product}
+              ></Card>
+            ))}
           </div>
         </div>
-        {/* sidebar */}
-        <div className='border col-span-4 '>
-          <h2 className='text-center text-xl my-3'>Order Summary</h2>
-          <ul className=' text-lg'>
-            <li>Selected Items: 6</li>
-            <li>Total Price: $1140</li>
-            <li>Total Shipping Charge: $5</li>
-            <li>Tax: $114</li>
-            <li>Sidebar Item 1</li>
-          </ul>
-          <h2>Grand Total: $1559</h2>
-          <div className='mt-5 flex flex-col gap-3'>
-            <button className='btn btn-primary w-48'>Clear Cart🗑</button>
-            <button className='btn btn-secondary w-48'>Review Order🎁</button>
-          </div>
+        <div className=' col-span-3'>
+          <CardSideBar></CardSideBar>
         </div>
       </div>
     </div>

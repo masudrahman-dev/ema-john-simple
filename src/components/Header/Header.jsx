@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
   return (
     <div className=' bg-emerald-700 '>
-      <nav className=' max-w-screen-xl mx-auto  p-5  w-11/12'>
+      <nav className=' max-w-screen-xl mx-auto  py-5  w-11/12'>
         <div className='flex justify-between items-center gap-3 '>
           <img
             src='../../../public/images/Logo.svg'
