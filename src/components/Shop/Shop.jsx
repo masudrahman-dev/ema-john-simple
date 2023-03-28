@@ -15,9 +15,9 @@ const Shop = () => {
   // console.log(data);
   return (
     <div className='max-w-screen-xl mx-auto  mt-12 w-11/12'>
-      <div className='grid grid-cols-12 gap-11 '>
-        <div className='  col-span-9'>
-          <div className='grid grid-cols-2 gap-5 '>
+      <div className='flex flex-col md:flex-row gap-10 justify-between '>
+        <div className=' order-2 md:order-1'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 '>
             {data.map((product) => (
               <Card
                 key={product.id}
@@ -26,7 +26,7 @@ const Shop = () => {
             ))}
           </div>
         </div>
-        <div className=' col-span-3'>
+        <div className=' border order-1 md:order-2'>
           <CardSideBar></CardSideBar>
         </div>
       </div>

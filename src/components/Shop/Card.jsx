@@ -6,12 +6,12 @@ const Card = (props) => {
     props.product;
   return (
     <>
-      <div className='card  bg-cyan-900  shadow-xl text-slate-100'>
-        <figure className=' pt-8'>
+      <div className='card bg-cyan-900  shadow-xl text-slate-100'>
+        <figure className=' pt-8 px-8'>
           <img
             src={img}
             alt=''
-            className='rounded-xl h-64'
+            className='rounded-xl h-64 sm:h-52'
           />
         </figure>
         <div className='card-body items-center text-center text-lg '>

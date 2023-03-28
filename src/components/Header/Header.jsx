@@ -9,7 +9,9 @@ const Header = () => {
             src='../../../public/images/Logo.svg'
             alt=''
           />
-          <ul className='flex gap-5 text-slate-100 text-lg'>
+          <div className=' hidden md:block'>
+
+          <ul className='flex gap-5 text-slate-100 text-lg '>
             <li>
               <a href=''>Order</a>
             </li>
@@ -23,6 +25,7 @@ const Header = () => {
               <a href=''>Login</a>
             </li>
           </ul>
+          </div>
         </div>
       </nav>
     </div>
