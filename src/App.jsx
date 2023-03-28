@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
-import CardSideBar from './components/Shop/CardSideBar'
 import Shop from './components/Shop/Shop'
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
   return (
     <div className="App">
      <Header></Header>
-     {/* <CardSideBar></CardSideBar> */}
+   
      <Shop></Shop>
     </div>
   )
