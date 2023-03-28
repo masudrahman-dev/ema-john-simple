@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardSideBar = () => {
   return (
-    <div className='md:fixed'>
+    <div className='md:sticky md:top-10  '>
       {/* sidebar */}
       <div className='bg-cyan-800  p-11 rounded-xl text-slate-100  '>
         <h2 className='text-center text-2xl mb-5'>Order Summary</h2>
