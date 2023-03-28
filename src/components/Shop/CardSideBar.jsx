@@ -2,9 +2,9 @@ import React from 'react';
 
 const CardSideBar = () => {
   return (
-    <div className=' '>
+    <div className='md:fixed'>
       {/* sidebar */}
-      <div className='bg-cyan-800  p-12 rounded-xl text-slate-100 '>
+      <div className='bg-cyan-800  p-11 rounded-xl text-slate-100  '>
         <h2 className='text-center text-2xl mb-5'>Order Summary</h2>
         <ul className=' text-lg'>
           <li>Selected Items: 6</li>
