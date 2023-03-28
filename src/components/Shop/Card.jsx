@@ -5,8 +5,8 @@ const Card = (props) => {
   const { id, img, name, price, ratings, stock, shipping, seller } =
     props.product;
   return (
-    <div className=''>
-      <div className='card  bg-cyan-900  shadow-xl'>
+    <>
+      <div className='card  bg-cyan-900  shadow-xl text-slate-100'>
         <figure className=' pt-8'>
           <img
             src={img}
@@ -25,7 +25,7 @@ const Card = (props) => {
           </div> 
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
