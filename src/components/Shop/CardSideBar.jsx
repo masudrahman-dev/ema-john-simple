@@ -17,9 +17,10 @@ const CardSideBar = (props) => {
     }
     setPrice(totalPrice);
     setShipping(totalShippingCharge);
-    // console.log('totalPrice :>> ', totalPrice);
   }, [carts]);
-
+  let totalTax = ((price + shipping) * 15) / 100;
+  let grandTotal = totalTax + price + shipping;
+  console.log('totalTax :>> ', totalTax);
   // console.log('price :>> ', price);
 
   return (
@@ -27,14 +28,13 @@ const CardSideBar = (props) => {
       {/* sidebar */}
       <div className='bg-cyan-800  p-11 rounded-xl text-slate-100  '>
         <h2 className='text-center text-2xl mb-5'>Order Summary</h2>
-        <ul className=' text-lg'>
+        <ul className=' text-lg leading-10'>
           <li>Selected Items: {props.carts.length}</li>
-          <li>Total Price: {price}</li>
-          <li>Total Shipping Charge: ${shipping}</li>
-          <li>Tax: $114</li>
-          <li>Sidebar Item 1</li>
+          <li>Total Price: $ {price.toFixed(2)}</li>
+          <li>Total Shipping Charge: $ {shipping.toFixed(2)}</li>
+          <li>Tax: $ {totalTax.toFixed(2)}</li>
         </ul>
-        <h2>Grand Total: $1559</h2>
+        <h2>Grand Total: $ {grandTotal.toFixed(2)}</h2>
         <div className='mt-5 flex flex-col gap-3 '>
           <button className='btn btn-primary w-48'>
             Clear Cart{' '}
