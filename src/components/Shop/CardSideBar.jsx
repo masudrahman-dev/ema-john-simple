@@ -4,9 +4,18 @@ import React, { useEffect, useState } from 'react';
 
 const CardSideBar = (props) => {
   const { cart } = props;
+  const [price, setPrice] = useState(0);
+  // console.log(price);
+  useEffect(() => {
+    let totalPrice = 0;
+    for (const c of cart) {
+      totalPrice += c.price;
+    }
+    setPrice(totalPrice);
+  console.log('totalPrice :>> ', totalPrice);
+  }, [cart]);
 
-  
-  console.log(cart);
+console.log('price :>> ', price);
 
   return (
     <div className='md:sticky md:top-10   '>
@@ -15,7 +24,7 @@ const CardSideBar = (props) => {
         <h2 className='text-center text-2xl mb-5'>Order Summary</h2>
         <ul className=' text-lg'>
           <li>Selected Items: {props.cart.length}</li>
-          <li>Total Price: $1140</li>
+          <li>Total Price: {price}</li>
           <li>Total Shipping Charge: $5</li>
           <li>Tax: $114</li>
           <li>Sidebar Item 1</li>
