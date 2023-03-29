@@ -1,15 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const CardSideBar = () => {
+const CardSideBar = (props) => {
+  const { cart } = props;
+
+  
+  console.log(cart);
+
   return (
     <div className='md:sticky md:top-10   '>
       {/* sidebar */}
       <div className='bg-cyan-800  p-11 rounded-xl text-slate-100  '>
         <h2 className='text-center text-2xl mb-5'>Order Summary</h2>
         <ul className=' text-lg'>
-          <li>Selected Items: 6</li>
+          <li>Selected Items: {props.cart.length}</li>
           <li>Total Price: $1140</li>
           <li>Total Shipping Charge: $5</li>
           <li>Tax: $114</li>
@@ -22,7 +27,6 @@ const CardSideBar = () => {
             <span className='pl-3'>
               <FontAwesomeIcon
                 icon={faTrashCan}
-                
                 size='xl'
               />
             </span>
