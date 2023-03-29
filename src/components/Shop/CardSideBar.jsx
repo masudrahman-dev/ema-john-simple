@@ -3,19 +3,24 @@ import { faBagShopping, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 
 const CardSideBar = (props) => {
-  const { cart } = props;
+  const { carts } = props;
   const [price, setPrice] = useState(0);
+  const [shipping, setShipping] = useState(0);
   // console.log(price);
+  console.log('carts :>> ', carts);
   useEffect(() => {
     let totalPrice = 0;
-    for (const c of cart) {
-      totalPrice += c.price;
+    let totalShippingCharge = 0;
+    for (const cart of carts) {
+      totalPrice += cart.price;
+      totalShippingCharge += cart.shipping;
     }
     setPrice(totalPrice);
-  console.log('totalPrice :>> ', totalPrice);
-  }, [cart]);
+    setShipping(totalShippingCharge);
+    // console.log('totalPrice :>> ', totalPrice);
+  }, [carts]);
 
-console.log('price :>> ', price);
+  // console.log('price :>> ', price);
 
   return (
     <div className='md:sticky md:top-10   '>
@@ -23,9 +28,9 @@ console.log('price :>> ', price);
       <div className='bg-cyan-800  p-11 rounded-xl text-slate-100  '>
         <h2 className='text-center text-2xl mb-5'>Order Summary</h2>
         <ul className=' text-lg'>
-          <li>Selected Items: {props.cart.length}</li>
+          <li>Selected Items: {props.carts.length}</li>
           <li>Total Price: {price}</li>
-          <li>Total Shipping Charge: $5</li>
+          <li>Total Shipping Charge: ${shipping}</li>
           <li>Tax: $114</li>
           <li>Sidebar Item 1</li>
         </ul>
