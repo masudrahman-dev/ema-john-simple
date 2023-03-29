@@ -6,15 +6,15 @@ const Card = (props) => {
   //   console.log(props.product);
   const { id, img, name, price, stock, seller } = props.product;
   const { addToCart } = props;
-  // console.log(addToCart);
-
   return (
     <>
       <div className='card bg-cyan-900  shadow-xl text-slate-100'>
         <figure className=' pt-8 px-8'>
           <img
             src={
-              'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9c7058d8677742ac8519ac3f009cdcf4_9366/Tiro_21_Track_Pants_Black_GH7305_21_model.jpg'
+              id !== 'b357e19b-4dd9-4fc7-b5c0-9ed5255464ba'
+                ? img
+                : '../../../public/images/giphy.gif'
             }
             alt=''
             className='rounded-xl h-64 sm:h-52'
