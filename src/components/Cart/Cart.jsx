@@ -8,23 +8,33 @@ const Cart = (props) => {
   const [shipping, setShipping] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
+  // console.log('carts :>> ', carts);
   // Calculate the total quantity, price, and shipping charge of all the items in the cart
   useEffect(() => {
-    const totalQuantity = carts.reduce(
-      (total, cart) => total + cart.quantity,
-      0
-    );
-    const totalPrice = carts.reduce((total, cart) => total + cart.price, 0);
-    const totalShippingCharge = carts.reduce(
-      (total, cart) => total + cart.shipping,
-      0
-    );
+    // const totalQuantity = carts.reduce(
+    //   (total, cart) => total + cart.quantity,
+    //   0
+    // );
+    // const totalPrice = carts.reduce((total, cart) => total + cart.price, 0);
+    // const totalShippingCharge = carts.reduce(
+    //   (total, cart) => total + cart.shipping,
+    //   0
+    // );
+    let totalPrice = 0;
+    let totalShippingCharge = 0;
+    let totalQuantity = 0;
+    for (const cart of carts) {
+      totalPrice += cart.price;
+      totalShippingCharge += cart.shipping;
+      totalQuantity += cart.quantity;
+      console.log('cart :>> ', cart.quantity);
+    }
+
     // Update the state variables with the calculated values
     setQuantity(totalQuantity);
     setPrice(totalPrice);
     setShipping(totalShippingCharge);
   }, [carts]);
-
   // Calculate the total tax and grand total
   let totalTax = ((price + shipping) * 15) / 100;
   let grandTotal = totalTax + price + shipping;

@@ -18,27 +18,50 @@ const Shop = (props) => {
   const [carts, setCarts] = useState([]);
 
   useEffect(() => {
-    const storedCart = getShoppingCart();
-    const savedCart = [];
-    for (const id in storedCart) {
-      // console.log('id :>> ', id);
-      let addedProduct = data.find((product) => product.id === id);
-      if (addedProduct) {
-        // console.log('addedProduct :>> ', addedProduct);
-        const quantity = storedCart[id];
-        // console.log('quantity :>> ', quantity);
-        addedProduct.quantity = quantity;
-        savedCart.push(addedProduct)
-      }
-    }
-    // console.log('savedCart :>> ', savedCart);
-    setCarts(savedCart)
+    // const storedCart = getShoppingCart();
+    // const savedCart = [];
+    // let totalQuantity = 0;
+    // for (const id in storedCart) {
+    //   // console.log('id :>> ', id);
+    //   let addedProduct = data.find((product) => product.id === id);
+    //   // console.log('addedProduct :>> ', addedProduct);
+    //   if (addedProduct) {
+    //     // console.log('addedProduct :>> ', addedProduct);
+    //     totalQuantity += storedCart[id];
+    //     // totalQuantity += 1;
+    //     // console.log('quantity :>> ', totalQuantity);
+    //     addedProduct.quantity = totalQuantity;
+    //     savedCart.push(addedProduct);
+    //   }
+    // }
+    // // console.log('totalQuantity :>> ', totalQuantity);
+    // // console.log('savedCart :>> ', savedCart);
+    // setCarts(savedCart);
+    // handleAddToCart()
   }, [data]);
 
   const handleAddToCart = (product) => {
-    const newCarts = [...carts, product];
-    setCarts(newCarts);
     addToDb(product.id);
+    const newCarts = [...carts, product];
+    const storedCart = getShoppingCart();
+    const savedCart = [];
+    let totalQuantity = 0;
+    for (const id in storedCart) {
+      let addedProduct = data.find((product) => product.id === id);
+      console.log('addedProduct :>> ', addedProduct);
+      if (addedProduct) {
+        // totalQuantity += 1;
+        // addedProduct.quantity = totalQuantity;
+        let quantity = addedProduct.quantity;
+        totalQuantity = quantity + 1;
+
+        addedProduct.quantity = totalQuantity;
+        savedCart.push(addedProduct);
+      }
+    }
+    // console.log('totalQuantity :>> ', totalQuantity);
+    // console.log('savedCart :>> ', savedCart);
+    setCarts(savedCart);
   };
 
   return (
