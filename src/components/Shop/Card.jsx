@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
+import { addToDb } from '../../utilities/fakedb';
 
 const Card = (props) => {
   //   console.log(props.product);
@@ -31,7 +32,11 @@ const Card = (props) => {
           <p className='text-base'>id : {id}</p>
           <div className='card-actions'>
             <button
-              onClick={() => addToCart(props.product)}
+            
+              onClick={() => {
+                addToCart(props.product) 
+                addToDb(id)
+              }}
               className='btn btn-primary'
             >
               Add To Cart{' '}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb } from '../../utilities/fakedb';
+import { getShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Card from './Card';
 
@@ -18,11 +18,14 @@ const Shop = (props) => {
   const [carts, setCarts] = useState([]);
   const addToCart = (product) => {
     const newCarts = [...carts, product];
-    // console.log(product);
     setCarts(newCarts);
-  };
 
-  addToDb()
+  };
+useEffect(()=>{
+  let storedCart = getShoppingCart()
+  console.log('storedCart :>> ', storedCart);
+},[])
+
   return (
     <div className='max-w-screen-xl mx-auto  mt-12 w-11/12'>
       <div className='grid grid-cols-1 md:grid-cols-12 gap-10 '>
