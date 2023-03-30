@@ -6,7 +6,7 @@ import { addToDb } from '../../utilities/fakedb';
 const Card = (props) => {
   //   console.log(props.product);
   const { id, img, name, price, stock, seller } = props.product;
-  const { addToCart } = props;
+  const { handleAddToCart } = props;
 
   return (
     <>
@@ -32,10 +32,9 @@ const Card = (props) => {
           <p className='text-base'>id : {id}</p>
           <div className='card-actions'>
             <button
-            
               onClick={() => {
-                addToCart(props.product) 
-                addToDb(id)
+                addToDb(id);
+                handleAddToCart(props.product);
               }}
               className='btn btn-primary'
             >

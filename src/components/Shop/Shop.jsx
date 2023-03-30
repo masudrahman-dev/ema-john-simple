@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getShoppingCart } from '../../utilities/fakedb';
+import { addToDb, getShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Card from './Card';
-
 
 const Shop = (props) => {
   // get data
@@ -15,16 +14,31 @@ const Shop = (props) => {
     };
     fetchData();
   }, []);
+
   const [carts, setCarts] = useState([]);
-  const addToCart = (product) => {
+
+  useEffect(() => {
+    const storedCart = getShoppingCart();
+    const savedCart = [];
+    for (const id in storedCart) {
+      // console.log('id :>> ', id);
+      let addedProduct = data.find((product) => product.id === id);
+      if (addedProduct) {
+        console.log('addedProduct :>> ', addedProduct);
+        const quantity = storedCart[id];
+        console.log('quantity :>> ', quantity);
+        addedProduct.quantity = quantity;
+        savedCart.push(addedProduct)
+      }
+    }
+    console.log('savedCart :>> ', savedCart);
+    setCarts(savedCart)
+  }, [data]);
+
+  const handleAddToCart = (product) => {
     const newCarts = [...carts, product];
     setCarts(newCarts);
-
   };
-useEffect(()=>{
-  let storedCart = getShoppingCart()
-  console.log('storedCart :>> ', storedCart);
-},[])
 
   return (
     <div className='max-w-screen-xl mx-auto  mt-12 w-11/12'>
@@ -36,10 +50,15 @@ useEffect(()=>{
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
             {data.map((product) => (
               <Card
-                addToCart={addToCart}
+                handleAddToCart={handleAddToCart}
                 key={product.id}
                 product={product}
               ></Card>
+              // <Card
+              //   handleAddToCart={handleAddToCart}
+              //   key={product.id}
+              //   product={product}
+              // ></Card>
             ))}
           </div>
         </div>
