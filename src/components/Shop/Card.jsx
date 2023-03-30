@@ -6,6 +6,7 @@ const Card = (props) => {
   //   console.log(props.product);
   const { id, img, name, price, stock, seller } = props.product;
   const { addToCart } = props;
+
   return (
     <>
       <div className='card bg-cyan-900  shadow-xl text-slate-100'>

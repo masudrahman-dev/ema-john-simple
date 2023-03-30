@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb } from '../../utilities/fakedb';
+import Cart from '../Cart/Cart';
 import Card from './Card';
-import CardSideBar from './CardSideBar';
+
 
 const Shop = (props) => {
   // get data
@@ -19,12 +21,13 @@ const Shop = (props) => {
     // console.log(product);
     setCarts(newCarts);
   };
-  // console.log(cart);
+
+  addToDb()
   return (
     <div className='max-w-screen-xl mx-auto  mt-12 w-11/12'>
       <div className='grid grid-cols-1 md:grid-cols-12 gap-10 '>
         <div className='sticky top-0 z-10  md:order-1  md:col-span-5 lg:col-span-4 xl:col-span-3 '>
-          <CardSideBar carts={carts}></CardSideBar>
+          <Cart carts={carts}></Cart>
         </div>
         <div className=' z-0 md:col-span-7 lg:col-span-8 xl:col-span-9 '>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
