@@ -6,20 +6,30 @@ const Cart = (props) => {
   const { carts } = props;
   const [price, setPrice] = useState(0);
   const [shipping, setShipping] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
+  // Calculate the total quantity, price, and shipping charge of all the items in the cart
   useEffect(() => {
+    const totalQuantity = carts.reduce(
+      (total, cart) => total + cart.quantity,
+      0
+    );
     const totalPrice = carts.reduce((total, cart) => total + cart.price, 0);
     const totalShippingCharge = carts.reduce(
       (total, cart) => total + cart.shipping,
       0
     );
+    // Update the state variables with the calculated values
+    setQuantity(totalQuantity);
     setPrice(totalPrice);
     setShipping(totalShippingCharge);
   }, [carts]);
 
+  // Calculate the total tax and grand total
   let totalTax = ((price + shipping) * 15) / 100;
   let grandTotal = totalTax + price + shipping;
 
+  // Format the price, shipping charge, tax, and grand total with the currency format
   const formatter = new Intl.NumberFormat(navigator.language, {
     style: 'currency',
     currency: 'USD',
@@ -28,6 +38,12 @@ const Cart = (props) => {
   const formattedShipping = formatter.format(shipping);
   const formattedTax = formatter.format(totalTax);
   const formattedGrandTotal = formatter.format(grandTotal);
+
+  // Add an event handler for the button that updates the cart and triggers the useEffect hook to recalculate the totals
+  // const handleAddToCart = (newItem) => {
+  //   const updatedCarts = [...carts, newItem];
+  //   setCarts(updatedCarts);
+  // };
 
   // console.log(`Price: ${formattedPrice}`);
   // console.log(`Shipping: ${formattedShipping}`);
@@ -40,7 +56,8 @@ const Cart = (props) => {
       <div className='bg-cyan-800  p-11 rounded-xl text-slate-100  '>
         <h2 className='text-center text-2xl mb-5'>Order Summary</h2>
         <ul className=' text-lg leading-10'>
-          <li>Selected Items: {props.carts.length}</li>
+          <li>Selected Items: {quantity}</li>
+          {/* <li>Selected Items: {props.carts.length}</li> */}
           <li>Total Price: {formattedPrice}</li>
           <li>Total Shipping Charge: {formattedShipping}</li>
           <li>Tax: {formattedTax}</li>

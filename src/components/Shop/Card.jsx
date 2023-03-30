@@ -33,7 +33,6 @@ const Card = (props) => {
           <div className='card-actions'>
             <button
               onClick={() => {
-                addToDb(id);
                 handleAddToCart(props.product);
               }}
               className='btn btn-primary'

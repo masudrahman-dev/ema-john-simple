@@ -24,20 +24,21 @@ const Shop = (props) => {
       // console.log('id :>> ', id);
       let addedProduct = data.find((product) => product.id === id);
       if (addedProduct) {
-        console.log('addedProduct :>> ', addedProduct);
+        // console.log('addedProduct :>> ', addedProduct);
         const quantity = storedCart[id];
-        console.log('quantity :>> ', quantity);
+        // console.log('quantity :>> ', quantity);
         addedProduct.quantity = quantity;
         savedCart.push(addedProduct)
       }
     }
-    console.log('savedCart :>> ', savedCart);
+    // console.log('savedCart :>> ', savedCart);
     setCarts(savedCart)
   }, [data]);
 
   const handleAddToCart = (product) => {
     const newCarts = [...carts, product];
     setCarts(newCarts);
+    addToDb(product.id);
   };
 
   return (
